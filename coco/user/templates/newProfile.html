@@ -1,0 +1,22 @@
+<h1>프로필</h1>
+<hr>
+<h2>계정정보</h2>
+<p>아이디: {{user.username}}</p>
+<hr>
+<h2>프로필 정보</h2>
+<form method="POST" enctype="multipart/form-data" action="{% url 'user:create_profile' %}" >
+    {% csrf_token %}
+    <label for="nickname">닉네임:</label>
+    <input type="text" name="nickname" id="nickname" value="{{profile.nickname}}"><br><br>
+
+    <label for="image">프로필 사진:</label>
+    {% if profile.image %}
+    <img src="{{profile.image.url}}" alt="프로필사진" width="100"><br>
+
+    <label>
+        <input type="checkbox" name="remove_image"/>사진삭제
+    </label><br><br>
+    {% endif %}
+    <input type="file" name="image" id="image"><br><br>
+    <button type="submit">저장</button>
+</form>

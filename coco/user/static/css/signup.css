@@ -1,0 +1,51 @@
+body {
+  background: #ffcd29;
+}
+p {
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 0.3rem 1rem;
+}
+
+input{
+  margin: 0 10px;
+  border-radius: 0.5rem;
+  border: 1px solid #efefef;
+  width: 20rem;
+  height: 1.3rem;
+}
+
+.container {
+  position: fixed;
+  border-radius: 1rem;
+  width: 26rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  -webkit-box-shadow: 6px 6px 16px -1px #000000; 
+box-shadow: 6px 6px 16px -1px #000000;
+  /* margin: auto 0; */
+}
+
+form {
+  position: relative;
+  height: 19rem;
+  margin: 2rem;
+}
+button {
+  position: absolute;
+  background: #ffcd29;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid #fff;
+  width: 6rem;
+  height: 1.8rem;
+  /* margin: 1.5rem; */
+  border-radius: 0.5rem;
+  left: 0;
+  right: 0;
+  margin: 1.2rem auto 1.5rem auto;
+}

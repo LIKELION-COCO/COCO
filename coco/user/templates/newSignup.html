@@ -1,0 +1,6 @@
+<h1>signup 페이지입니다.</h1>
+<form method="post" action="{% url 'user:signup' %}">
+    {%csrf_token%}
+    {{form}}
+    <input type="submit" value="회원가입하기"/>
+</form>
