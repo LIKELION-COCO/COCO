@@ -31,10 +31,16 @@
       <div class="overlay-panel overlay-right">
         <h1>Hello, Guys!</h1>
         <p>Enter your personal details and start</p>
-        <button class="ghost" id="signUp">Sign Up</button>
+        <button class="ghost" id="signUp" onclick=goToSignup()>Sign Up</button>
       </div>
     </div>
   </div>
 </div>
 </body>
 </html>
+<script>
+  function goToSignup() {
+    const signup_url = `/user/signup/`;
+    window.location.href = signup_url;
+  }
+</script>

@@ -4,7 +4,7 @@ from .models import Profile, CustomUser
 from django.shortcuts import render, redirect
 from django.core.validators import EmailValidator
 from django.core.exceptions import ValidationError
-
+import os
 def signup(request):
     if request.method == "POST":
         email = request.POST.get('email')
@@ -21,11 +21,9 @@ def signup(request):
             # 사용자 생성
             user = CustomUser.objects.create_user(
                 email=email, password=password, username=username, age=age)
-            # login(request, user)
-            # return redirect('home')
-            return redirect('signin')
+            login(request, user)
+            return redirect('new_profile')
     return render(request, 'signup.html')
-
 
 def signin(request):
     if request.method == "POST":
@@ -62,8 +60,24 @@ def create_profile(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
     if request.method == "POST":
         profile.nickname = request.POST.get('nickname')
-        print(profile.nickname)
-        profile.image = request.FILES.get('image')
+        if request.POST.get('remove_image') == 'on':
+            delete_image(profile)   
+        else:
+            profile.image = request.FILES.get('image')        
         profile.save()
         return redirect("user:new_profile")
     return render(request, "newProfile.html", {"profile": profile})
+
+
+def delete_image(profile):
+    # 이미지 파일 삭제
+    if profile.image:
+        # 이미지 파일의 절대 경로를 가져옴
+        image_path = profile.image.path
+        # 파일이 존재하면 삭제
+        if os.path.exists(image_path):
+            os.remove(image_path)
+
+    # DB에서 이미지 정보 제거
+    profile.image = None
+    profile.save()

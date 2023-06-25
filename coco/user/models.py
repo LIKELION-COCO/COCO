@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 
 
 class CustomUserManager(BaseUserManager):
-    # create_user와 create_superuser는 필수적으로 만들어야함
     def create_user(self, email, password, username, age, **kwargs):
         user = self.model(email=email, username=username, age=age, **kwargs)
         user.set_password(password)
@@ -34,9 +33,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def is_staff(self):
         return self.is_superuser
 
-
 class Profile(models.Model):
-    # user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True)
     user = models.OneToOneField(
         CustomUser, on_delete=models.CASCADE, null=True, to_field='email', db_constraint=False)
     nickname = models.CharField(max_length=20, null=True)
