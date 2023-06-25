@@ -78,6 +78,5 @@ def delete_image(profile):
         if os.path.exists(image_path):
             os.remove(image_path)
 
-    # DB에서 이미지 정보 제거
     profile.image = None
     profile.save()
